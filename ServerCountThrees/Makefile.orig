@@ -1,0 +1,19 @@
+# target ... : prerequisites ...0
+# 	recipe
+# 	...
+	
+objects = ServerCountThrees.o readInt32BitLE.o
+
+ServerCountThrees : $(objects)
+	cc -o ServerCountThrees ServerCountThrees.o readInt32BitLE.o
+
+ServerCountThrees.o : ServerCountThrees.c readInt32BitLE.h
+	cc -c ServerCountThrees.c
+readInt32BitLE.o : readInt32BitLE.c readInt32BitLE.h
+	cc -c readInt32BitLE.c
+	
+test :
+	./ServerCountThrees
+	
+clean :
+	rm $(objects)
